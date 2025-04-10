@@ -1,1 +1,69 @@
-<p>supermercado-list works!</p>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Listagem de Supermercados</h2>
+                    <div class="alinharDireita">
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="new()" >Novo</button>
+                    </div>
+                    <br>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th >ID</th>
+                            <th >Nome</th>
+                            <th >Rua</th>
+                            <th >Email</th>
+                            <th >Cadastro Completo</th>
+                            <th >Usuario</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @for (professor of lista; track $index) {
+                            <tr>
+                                <th>{{supermercado.id}}</th>
+                                <td>{{supermercado.nome}}</td>
+                                <td>{{supermercado.rua}}</td>
+                                <td>{{supermercado.email}}</td>
+                                <td>{{supermercado.cadastroCompleto}}</td>
+                                <td>{{supermercado.usuario}}</td>
+                                <th class="alinharDireita">
+                                    <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" >
+                                        Editar
+                                    </button>
+                                    <button  type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
+                                        Deletar
+                                    </button>
+                                </th>
+                                
+                            </tr>
+                            }
+                        </tbody>
+                      </table>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+</div>
+
+<!--
+
+<ng-template #modalProfessorNew>
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Novo carro</h5>
+    </div>
+    <div class="modal-body">
+
+        <app-professor-form [professor]="professorEdit" (retorno)="retorno($event)"></app-professor-form>
+
+    </div>
+
+</ng-template> -->
