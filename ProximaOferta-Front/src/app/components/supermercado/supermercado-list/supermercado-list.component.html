@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h2>Listagem de Supermercados</h2>
                     <div class="alinharDireita">
-                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="new()" >Novo</button>
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark"  >Novo</button>
                     </div>
                     <br>
                     <table class="table">
@@ -21,7 +21,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @for (professor of lista; track $index) {
+                            @for (supermercado of lista; track $index) {
                             <tr>
                                 <th>{{supermercado.id}}</th>
                                 <td>{{supermercado.nome}}</td>
