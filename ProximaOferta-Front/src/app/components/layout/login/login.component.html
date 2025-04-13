@@ -1,0 +1,37 @@
+<br>
+<div class="Container">
+
+    <div class="row">
+
+        
+    <div class="col-lg-4"></div>
+
+    <div class="col-lg-4 alinhar topo">
+
+        <div class="card">
+            <div class="card-body">
+                <h2>Login</h2>
+                        
+                <mdb-form-control>
+                    <input (keyup.enter)="logar()" [(ngModel)]="usuario.usuario" mdbInput type="text" id="typeText" class="form-control" />
+                    <label mdbLabel class="form-label" for="typeText">Usuario</label>
+                </mdb-form-control>
+                <br>
+                <mdb-form-control>
+                    <input (keyup.enter)="logar()" [(ngModel)]="usuario.senha" mdbInput type="password" id="typeText" class="form-control" />
+                    <label mdbLabel class="form-label" for="typeText">Senha</label>
+                </mdb-form-control>
+                <br>
+                
+                <button (click)="logar()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">Accesar</button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-4"></div>
+
+    </div>
+
+</div>

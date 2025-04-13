@@ -4,10 +4,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h2>Listagem de Supermercados</h2>
+                    <h2>Listagem de Usuarios</h2>
                     <div class="alinharDireita">
                         <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="open()">
-                            Novo
+                            novo
                         </button>
                     </div>
                     <br>
@@ -15,21 +15,14 @@
                         <thead>
                           <tr>
                             <th >ID</th>
-                            <th >Nome</th>
-                            <th >Validade</th>
-                            <th >Preco Original</th>
-                            <th >Preco Atual</th>
-                            <th >Supermercado</th>
+                            <th >Usuario</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @for (supermercado of lista; track $index) {
+                            @for (usuario of lista; track $index) {
                             <tr>
-                                <th>{{supermercado.id}}</th>
-                                <td>{{supermercado.nome}}</td>
-                                <td>{{supermercado.rua}}</td>
-                                <td>{{supermercado.email}}</td>
-                                <td>{{supermercado.usuario!.usuario}}</td>
+                                <th>{{usuario.id}}</th>
+                                <td>{{usuario.usuario}}</td>
                                 <th class="alinharDireita">
                                     <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="">
                                         Editar
@@ -55,15 +48,15 @@
 </div>
 
 
-<ng-template #modalSupermercadoNew>
+<ng-template #modalUsuarioNew>
 
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Novo Supermercado</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Novo Usuario</h5>
         <button (click)="close()"></button>
     </div>
     <div class="modal-body">
 
-        <app-supermercado-form></app-supermercado-form>
+    <app-usuario-form></app-usuario-form>
 
     </div>
 
