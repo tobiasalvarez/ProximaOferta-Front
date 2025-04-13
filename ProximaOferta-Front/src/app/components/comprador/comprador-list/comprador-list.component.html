@@ -1,0 +1,65 @@
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Listagem de Compradores</h2>
+                    <div class="alinharDireita">
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="/admin/comprador/new">Novo</button>
+                    </div>
+                    <br>
+                    <table border ="1" class="table">
+                        <thead>
+                          <tr>
+                            <th >ID</th>
+                            <th >Nome</th>
+                            <th >Rua</th>
+                            <th >Bairro</th>
+                            <th >Idade</th>
+                        
+                          </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @for (comprador of lista; track $index) {
+                            <tr>
+                              
+                                <td>{{comprador.nome}}</td>
+                                <td>{{comprador.rua}}</td>
+                                <td>{{comprador.bairro}}</td>
+                                <td>{{comprador.idade}}</td>
+                                <th class="alinharDireita">
+                                    <div>
+                                        @if(botoes){
+                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="select(comprador)">
+                                                Selecionar
+                                            </button>
+                                        }
+                                        @else {
+                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="/admin/comprador/update/{{comprador.id}}">
+                                                Editar
+                                            </button>
+                                            
+                                            <button (click)="delete(comprador)" type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
+                                                Deletar
+                                            </button>
+                                        }
+                                    </div>
+                                </th>
+                                
+                            </tr>
+                            }
+                        </tbody>
+                      </table>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+</div>

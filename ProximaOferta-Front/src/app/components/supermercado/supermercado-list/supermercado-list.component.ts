@@ -1,6 +1,10 @@
 import { Component, inject, TemplateRef, ViewChild, viewChild } from '@angular/core';
 import { Supermercado } from '../../../models/supermercado';
 import { Usuario } from '../../../models/usuario';
+<<<<<<< HEAD
+=======
+import { SupermercadoService } from '../../../services/supermercado.service.service';
+>>>>>>> 284495d27d4cd00fe45be2ff366ff0a1a573f7d7
 import Swal from 'sweetalert2';
 
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
@@ -20,11 +24,14 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 export class SupermercadoListComponent {
   lista: Supermercado[] = [];
   supermercadoService = inject(SupermercadoService);
+<<<<<<< HEAD
 
   modalService = inject(MdbModalService);
   @ViewChild("modalSupermercadoNew") modalSupermercadoNew!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 
+=======
+>>>>>>> 284495d27d4cd00fe45be2ff366ff0a1a573f7d7
 
   constructor() {
    this.findAll();

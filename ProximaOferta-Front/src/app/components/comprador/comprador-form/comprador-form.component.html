@@ -1,0 +1,48 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+
+    <div class="col-lg-4 alinhar topo">
+
+        <div class="card">
+            <div class="card-body">
+                <h2>Cadastrar Comprador</h2>
+                        
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.id" />
+                    <label mdbLabel class="form-label" for="typeText">ID</label>
+                </mdb-form-control>
+                <br>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.nome" />
+                    <label mdbLabel class="form-label" for="typeText">Nome</label>
+                </mdb-form-control>
+                <br>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.rua" />
+                    <label mdbLabel class="form-label" for="typeText">Rua</label>
+                </mdb-form-control>
+                <br>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.bairro" />
+                    <label mdbLabel class="form-label" for="typeText">Bairro</label>
+                </mdb-form-control>
+                <br>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.idade" />
+                    <label mdbLabel class="form-label" for="typeText">Idade</label>
+                </mdb-form-control>
+                <br>
+                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                    Salvar
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-4"></div>
+    </div>
+</div>    

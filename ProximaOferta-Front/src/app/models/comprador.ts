@@ -2,11 +2,15 @@ import { Comanda } from "./comanda";
 import { Sexo } from "./sexo";
 
 export class Comprador {
-    id!: number;
-    nome!: string;
-    rua!: string;
-    bairro!: string;
-    idade!: number;
-    genero!: Sexo;
-    comanda!: Comanda;
+
+    constructor(
+    public id: number = 1,
+    public nome: string = '',
+    public rua: string,
+    public bairro: string,
+    public idade: number
+    )   {}
+
+
+
 }

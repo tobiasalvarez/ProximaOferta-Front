@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ComandaServiceService {
+export class ComandaService {
 
   http = inject(HttpClient);
   API = 'http://localhost:8080/api/comanda';
