@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SupermercadoServiceService {
+export class SupermercadoService {
 
   http = inject(HttpClient);
   API = 'http://localhost:8080/api/supermercado';

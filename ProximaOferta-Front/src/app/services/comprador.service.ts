@@ -5,13 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CompradorServiceService {
+export class CompradorService {
 
   http = inject(HttpClient);
   API = 'http://localhost:8080/api/comprador';
 
-  constructor() { }
-
+  
   findAll():Observable<Comprador[]>{
     return this.http.get<Comprador[]>(this.API+'/findAll');
   }

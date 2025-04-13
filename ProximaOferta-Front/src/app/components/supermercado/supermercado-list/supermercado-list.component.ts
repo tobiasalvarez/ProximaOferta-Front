@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Supermercado } from '../../../models/supermercado';
 import { Usuario } from '../../../models/usuario';
-import { SupermercadoServiceService } from '../../../services/supermercado.service.service';
+import { SupermercadoService } from '../../../services/supermercado.service.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SupermercadoListComponent {
   lista: Supermercado[] = [];
-  supermercadoService = inject(SupermercadoServiceService);
+  supermercadoService = inject(SupermercadoService);
 
   constructor() {
    this.findAll();

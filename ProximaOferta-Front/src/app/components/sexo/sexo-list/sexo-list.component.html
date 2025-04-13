@@ -1,0 +1,59 @@
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Listagem de Generos</h2>
+                    <div class="alinharDireita">
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="/admin/sexo/new">Novo</button>
+                    </div>
+                    <br>
+                    <table border ="1" class="table">
+                        <thead>
+                          <tr>
+                            <th >Nome</th>
+                            
+                        
+                          </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @for (genero of lista; track $index) {
+                            <tr>
+                              
+                                <td>{{genero.genero}}</td>
+                                <th class="alinharDireita">
+                                    <div>
+                                        @if(botoes){
+                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="select(genero)">
+                                                Selecionar
+                                            </button>
+                                        }
+                                        @else {
+                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="/admin/sexo/update/{{genero.id}}">
+                                                Editar
+                                            </button>
+                                            
+                                            <button (click)="delete(genero)" type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
+                                                Deletar
+                                            </button>
+                                        }
+                                    </div>
+                                </th>
+                                
+                            </tr>
+                            }
+                        </tbody>
+                      </table>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+</div>
