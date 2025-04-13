@@ -1,0 +1,45 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+
+    <div class="col-lg-4 alinhar topo">
+
+        <div class="card">
+            <div class="card-body">
+                <h2>Cadastrar Produto</h2>
+
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.nome" />
+                    <label mdbLabel class="form-label" for="typeText">Nome</label>
+                </mdb-form-control>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.validade" />
+                    <label mdbLabel class="form-label" for="typeText">Validade</label>
+                </mdb-form-control>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoOriginal" />
+                    <label mdbLabel class="form-label" for="typeText">Preco Original</label>
+                </mdb-form-control>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoAtual" />
+                    <label mdbLabel class="form-label" for="typeText">Preco Atual</label>
+                </mdb-form-control>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.supermercado!.nome" />
+                    <label mdbLabel class="form-label" for="typeText">Supermercado</label>
+                </mdb-form-control>
+               
+                <br>
+                <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="save()">
+                    Salvar
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-4"></div>
+    </div>
+</div>    
