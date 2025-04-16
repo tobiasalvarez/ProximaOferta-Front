@@ -29,7 +29,7 @@ export class UsuarioFormComponent {
         this.usuarioService.update(this.usuario, this.usuario.id).subscribe({
           next: (mensagem) => {
             Swal.fire(mensagem, '', 'success');
-            this.roteador.navigate(['admin/professor']);
+            this.roteador.navigate(['admin/usuario']);
             this.retorno.emit("OK");
           },
           error: (erro) => {
@@ -41,7 +41,7 @@ export class UsuarioFormComponent {
         this.usuarioService.save(this.usuario).subscribe({
           next: (mensagem) => {
             Swal.fire(mensagem, '', 'success');
-            this.roteador.navigate(['admin/produto']);
+            this.roteador.navigate(['admin/usuario']);
             this.retorno.emit("OK");
           },
           error: (erro) => {

@@ -1,44 +1,37 @@
-import { Component, inject, TemplateRef, ViewChild, viewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Input, input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { Supermercado } from '../../../models/supermercado';
-import { Usuario } from '../../../models/usuario';
-<<<<<<< HEAD
-=======
-import { SupermercadoService } from '../../../services/supermercado.service.service';
->>>>>>> 284495d27d4cd00fe45be2ff366ff0a1a573f7d7
-import Swal from 'sweetalert2';
-
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
-import { FormsModule } from '@angular/forms';
-import { SupermercadoService } from '../../../services/supermercado.service';
 import { RouterLink } from '@angular/router';
+import { SupermercadoService } from '../../../services/supermercado.service';
+import Swal from 'sweetalert2';
+import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { SupermercadoFormComponent } from "../supermercado-form/supermercado-form.component";
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-supermercado-list',
   standalone: true,
-  imports: [FormsModule, RouterLink, SupermercadoFormComponent, MdbModalModule],
+  imports: [MdbModalModule, SupermercadoFormComponent],
   templateUrl: './supermercado-list.component.html',
   styleUrl: './supermercado-list.component.scss'
 })
 export class SupermercadoListComponent {
-  lista: Supermercado[] = [];
+  lista: Supermercado[]= [];
   supermercadoService = inject(SupermercadoService);
-<<<<<<< HEAD
+  @Input("botoes") botoes : boolean = false;  
+  @Output("retornoSupermercado") retornoSupermercado = new EventEmitter<any>();
+  supermercadoEdit: Supermercado = new Supermercado(0,"","", "");
 
-  modalService = inject(MdbModalService);
-  @ViewChild("modalSupermercadoNew") modalSupermercadoNew!: TemplateRef<any>;
+//ELEMENTOS DA MODAL
+  modalService = inject(MdbModalService) // para conseguri abrir a modal
+  @ViewChild ("modalSupermercadoDetalhe") modalSupermercadoDetalhe!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 
-=======
->>>>>>> 284495d27d4cd00fe45be2ff366ff0a1a573f7d7
-
-  constructor() {
-   this.findAll();
+  constructor(){
+    this.findAll();
   }
 
+
   findAll(){
-   
+    
     this.supermercadoService.findAll().subscribe({
       next: (listaRetornada) => {
         this.lista = listaRetornada;
@@ -47,14 +40,51 @@ export class SupermercadoListComponent {
         Swal.fire(erro.error, '', 'error');
       }
     });
-  
   }
 
-  open(){
-    this.modalRef = this.modalService.open(this.modalSupermercadoNew);
+  delete(supermercado: Supermercado){
+    Swal.fire({
+        title: 'Tem certeza que deseja deletar este registro?',
+          icon: 'warning',
+          showConfirmButton: true,
+          confirmButtonText: 'Ok'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let indice = this.lista.findIndex(x => {return x.id == supermercado.id});
+      this.lista.splice(indice, 1)};
+      Swal.fire({
+        title: 'Deletado com sucesso!',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+    })
+  });
   }
 
-  close(){
-    this.modalRef.close();
+
+  select(supermercado: Supermercado){
+    this.retornoSupermercado.emit(supermercado);
   }
+new(){
+  this.supermercadoEdit = new Supermercado(0,"","", "");
+  this.modalRef = this.modalService.open(this.modalSupermercadoDetalhe);
+}
+
+edit(supermercado: Supermercado){
+  this.supermercadoEdit = Object.assign({}, supermercado); // clonando para evitar referencia de objeto
+  this.modalRef = this.modalService.open(this.modalSupermercadoDetalhe);
+}
+
+retornoDetalhe(supermercado: Supermercado){
+  if(supermercado.id > 0){
+    let indice = this.lista.findIndex(x => {return x.id == supermercado.id});
+    this.lista[indice] = supermercado;
+  }else{
+    this.lista.push(supermercado)
+  }
+
+
+
+this.modalRef.close();
+}
+
 }

@@ -21,9 +21,9 @@ export class SexoFormComponent {
   @Input("sexo") sexo: Sexo = new Sexo();
   @Output("meuEvento") meuEvento = new EventEmitter();
 
-  private sexoService = inject(SexoService);
-  private roteador = inject(Router);
-  private route = inject(ActivatedRoute);
+  sexoService = inject(SexoService);
+  roteador = inject(Router);
+  route = inject(ActivatedRoute);
    router2 = inject(Router);
 
   findById(id: number) {
@@ -38,24 +38,34 @@ export class SexoFormComponent {
   }
 
   save(){
-    if(this.sexo.id> 0){
-      Swal.fire({
-        title: 'Editado com sucesso!',
-        text: 'Editado com sucesso!',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-    alert('Editado com sucesso!');
-    this.router2.navigate(['admin/sexo'], {state: { compradorEditado: this.sexo}})
-  }else{
-    Swal.fire({
-      title: 'Salvo com sucesso!',
-      text: 'Salvo com sucesso',
-      icon: 'success',
-      confirmButtonText: 'Ok'
-    });
-    this.router2.navigate(['admin/sexo'], {state: { compradorNovo: this.sexo}})
-  }
-}
+        if(this.sexo.id > 0){
+          // UPDATE
+          this.sexoService.update(this.sexo, this.sexo.id).subscribe({
+            next: (mensagem) => {
+              Swal.fire(mensagem, '', 'success');
+              this.roteador.navigate(['admin/sexo']);
+              this.meuEvento.emit("OK");
+            },
+            error: (erro) => {
+              Swal.fire(erro.error, '', 'error');
+            }
+          });
+        }else{
+          // SAVE
+          this.sexoService.save(this.sexo).subscribe({
+            next: (mensagem) => {
+              Swal.fire(mensagem, '', 'success');
+              this.roteador.navigate(['admin/sexo']);
+              this.meuEvento.emit("OK");
+            },
+            error: (erro) => {
+              Swal.fire(erro.error, '', 'error');
+            }
+          });
+    
+        }
+        
+        this.meuEvento.emit(this.sexo);
+      }
      
 }

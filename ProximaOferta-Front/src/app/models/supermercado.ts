@@ -1,10 +1,13 @@
-import { Usuario } from "./usuario";
+
 
 export class Supermercado {
-    id!: number;
-    nome!: string;
-    rua!: string;
-    email!: string;
-    cadastroCompleto!: boolean;
-    usuario!: Usuario;
+
+    constructor(
+    public id: number = 0,
+    public nome: string = '',
+    public rua: string = '',
+    public email: string = ''){}
+    /*cadastroCompleto!: boolean;
+    usuario!: Usuario; INSERIR MAIS TARTE */
 }
+

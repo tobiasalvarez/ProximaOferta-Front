@@ -1,3 +1,4 @@
+
 <br>
 <div class="container">
     <div class="row">
@@ -6,42 +7,46 @@
                 <div class="card-body">
                     <h2>Listagem de Produtos</h2>
                     <div class="alinharDireita">
-                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="new()" >
-                            Novo
-                        </button>
-                        <!-- 
-                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="/admin/produto/new">
-                            Novo
-                        </button>-->
+                        <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
                     </div>
                     <br>
-                    <table class="table">
+                    <table border ="1" class="table">
                         <thead>
                           <tr>
                             <th >ID</th>
                             <th >Nome</th>
                             <th >Validade</th>
-                            <th >Preco Original</th>
-                            <th >Preco Atual</th>
-                            <th >Supermercado</th>
+                            <th >Preço</th>
+                        
+                        
                           </tr>
                         </thead>
                         <tbody>
+                            
                             @for (produto of lista; track $index) {
                             <tr>
-                                <th>{{produto.id}}</th>
+                                <td>{{produto.id}}</td>
                                 <td>{{produto.nome}}</td>
                                 <td>{{produto.validade}}</td>
                                 <td>{{produto.precoOriginal}}</td>
-                                <td>{{produto.precoAtual}}</td>
-                                <td>{{produto.supermercado!.nome}}</td>
+                            
                                 <th class="alinharDireita">
-                                    <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="">
-                                        Editar
-                                    </button>
-                                    <button  type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
-                                        Deletar
-                                    </button>
+                                    <div>
+                                        @if(botoes){
+                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="select(produto)">
+                                                Selecionar
+                                            </button>
+                                        }
+                                        @else {
+                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple (click)="edit(produto)">Editar</button>
+                                            
+                                            
+                                            
+                                            <button (click)="delete(produto)" type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
+                                                Deletar
+                                            </button>
+                                        }
+                                    </div>
                                 </th>
                                 
                             </tr>
@@ -57,20 +62,24 @@
 
     </div>
 
-</div>
+
+    <ng-template #modalProdutoDetalhe>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              (click)="modalRef.close()"
+            ></button>
+          </div>
+          <div class="modal-body">
+
+            <app-produto-form [produto]="produtoEdit" (retorno)="retornoDetalhe($event)"></app-produto-form>
+
+          </div>
+
+        </ng-template>
 
 
-
-<ng-template #modalProdutoNew>
-
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
-        <button (click)="close()"></button>
-    </div>
-    <div class="modal-body">
-
-        <app-produto-form></app-produto-form>
-
-    </div>
-
-</ng-template>  
+   

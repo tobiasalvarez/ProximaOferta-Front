@@ -18,21 +18,7 @@ export class SexoListComponent {
   @Output("retornoSexo") retornoComprador = new EventEmitter<any>();
 
   constructor(){
-    
-    
-
-    let sexoNovo = history.state.sexoNovo;
-    let sexoEditado = history.state.sexoEditado;
-    
-    if(sexoNovo){
-      sexoNovo.id = 0;
-      this.lista.push(sexoNovo);
-    }
-  
-    if(sexoEditado){
-      let i = this.lista.findIndex(x => {return x.id == sexoEditado.id});
-      this.lista = sexoEditado
-    }
+    this.findAll();
 
   }
 

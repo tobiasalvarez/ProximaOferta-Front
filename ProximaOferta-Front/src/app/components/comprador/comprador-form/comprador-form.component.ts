@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CompradorService } from '../../../services/comprador.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import Swal from 'sweetalert2';
+import { find } from 'rxjs';
+import { CompradorListComponent } from '../comprador-list/comprador-list.component';
 
 
 @Component({
@@ -17,14 +19,14 @@ import Swal from 'sweetalert2';
 })
 export class CompradorFormComponent {
 
-  
-
   @Input("comprador") comprador: Comprador = new Comprador(0, '', '', '', 0);
-  @Output("meuEvento") meuEvento = new EventEmitter();
+  @Output("retorno") retorno = new EventEmitter<any>();
+  router = inject(ActivatedRoute);
 
-  private compradorService = inject(CompradorService);
-  private roteador = inject(Router);
-  private route = inject(ActivatedRoute);
+
+   compradorService = inject(CompradorService);
+   roteador = inject(Router);
+   route = inject(ActivatedRoute);
    router2 = inject(Router);
 
   findById(id: number) {
@@ -39,24 +41,34 @@ export class CompradorFormComponent {
   }
 
   save(){
-    if(this.comprador.id> 0){
-      Swal.fire({
-        title: 'Editado com sucesso!',
-        text: 'Editado com sucesso!',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-    alert('Editado com sucesso!');
-    this.router2.navigate(['admin/comprador'], {state: { compradorEditado: this.comprador}})
-  }else{
-    Swal.fire({
-      title: 'Salvo com sucesso!',
-      text: 'Salvo com sucesso',
-      icon: 'success',
-      confirmButtonText: 'Ok'
-    });
-    this.router2.navigate(['admin/comprador'], {state: { compradorNovo: this.comprador}})
-  }
-}
+        if(this.comprador.id > 0){
+          // UPDATE
+          this.compradorService.update(this.comprador, this.comprador.id).subscribe({
+            next: (mensagem) => {
+              Swal.fire(mensagem, '', 'success');
+              this.roteador.navigate(['admin/comprador']);
+              this.retorno.emit("OK");
+            },
+            error: (erro) => {
+              Swal.fire(erro.error, '', 'error');
+            }
+          });
+        }else{
+          // SAVE
+          this.compradorService.save(this.comprador).subscribe({
+            next: (mensagem) => {
+              Swal.fire(mensagem, '', 'success');
+              this.roteador.navigate(['admin/comprador']);
+              this.retorno.emit("OK");
+            },
+            error: (erro) => {
+              Swal.fire(erro.error, '', 'error');
+            }
+          });
+    
+        }
+        
+        this.retorno.emit(this.comprador);
+      }
      
 }
