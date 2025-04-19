@@ -23,9 +23,28 @@
                 <br>
                 <mdb-form-control>
                     <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoOriginal" />
-                    <label mdbLabel class="form-label" for="typeText">Preço</label>
+                    <label mdbLabel class="form-label" for="typeText">Preço Original</label>
+                </mdb-form-control>
+                <br>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoAtual" />
+                    <label mdbLabel class="form-label" for="typeText">Preço Atual</label>
                 </mdb-form-control>
                 
+                <br>
+                <div>
+                    @if (produto.supermercado == null) {
+                        <button (click)="findSupermercado()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                            Buscar Supermercado
+                        </button>
+                    }@else{
+                        <span class="text primary">Supermercado: {{supermercado.nome}</span>
+                        <button (click)="findSupermercado()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                            Trocar Supermercado
+                        </button>
+                    }
+                </div>
+                <br>
                 <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
                     Salvar
                 </button>
@@ -37,4 +56,25 @@
 
 
     </div>
-</div>    
+</div> 
+
+
+
+
+<ng-template #modalFindSupermercado>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              (click)="modalRef.close()"
+            ></button>
+          </div>
+          <div class="modal-body">
+
+            <app-supermercado-list [botoes]="true" (retornoSupermercado)="retornoSupermercado($event)"></app-supermercado-list>
+
+          </div>
+
+    </ng-template>

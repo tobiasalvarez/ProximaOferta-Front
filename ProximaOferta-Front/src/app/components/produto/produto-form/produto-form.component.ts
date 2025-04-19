@@ -8,12 +8,14 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import Swal from 'sweetalert2';
 import { find } from 'rxjs';
 import { ProdutoListComponent } from '../produto-list/produto-list.component';
+import { SupermercadoListComponent } from "../../supermercado/supermercado-list/supermercado-list.component";
+import { Supermercado } from '../../../models/supermercado';
 
 
 @Component({
   selector: 'app-produto-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule],
+  imports: [MdbFormsModule, FormsModule, SupermercadoListComponent],
   templateUrl: './produto-form.component.html',
   styleUrl: './produto-form.component.scss'
 })
@@ -22,6 +24,10 @@ export class ProdutoFormComponent {
   @Input("produto") produto: Produto = new Produto(0, '', new Date, 0);
   @Output("retorno") retorno = new EventEmitter<any>();
   router = inject(ActivatedRoute);
+
+  modalService = inject(MdbModalService) // para conseguri abrir a modal
+  @ViewChild ("modalFindSupermercado") modalFindSupermercado!: TemplateRef<any>;
+  modalRef!: MdbModalRef<any>;
 
 
    produtoService = inject(ProdutoService);
@@ -69,6 +75,15 @@ export class ProdutoFormComponent {
         }
         
         this.retorno.emit(this.produto);
+      }
+
+      findSupermercado(){
+        this.modalRef = this.modalService.open(this.modalFindSupermercado, {modalClass: 'modal-lg'}); 
+      }
+
+      retornoSupermercado(supermercado:Supermercado){
+        this.produto.supermercado = supermercado;
+        this.modalRef.close();
       }
      
 }

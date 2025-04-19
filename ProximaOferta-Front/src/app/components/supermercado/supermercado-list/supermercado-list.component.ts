@@ -25,6 +25,7 @@ export class SupermercadoListComponent {
   @ViewChild ("modalSupermercadoDetalhe") modalSupermercadoDetalhe!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 
+
   constructor(){
     this.findAll();
   }
@@ -82,9 +83,9 @@ retornoDetalhe(supermercado: Supermercado){
     this.lista.push(supermercado)
   }
 
-
-
 this.modalRef.close();
 }
+
+
 
 }
