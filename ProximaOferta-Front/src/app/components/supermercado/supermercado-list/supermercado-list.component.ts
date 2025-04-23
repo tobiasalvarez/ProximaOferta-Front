@@ -18,7 +18,7 @@ export class SupermercadoListComponent {
   supermercadoService = inject(SupermercadoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoSupermercado") retornoSupermercado = new EventEmitter<any>();
-  supermercadoEdit: Supermercado = new Supermercado(0,"","", "");
+  supermercadoEdit: Supermercado = new Supermercado;
 
 //ELEMENTOS DA MODAL
   modalService = inject(MdbModalService) // para conseguri abrir a modal
@@ -66,7 +66,7 @@ export class SupermercadoListComponent {
     this.retornoSupermercado.emit(supermercado);
   }
 new(){
-  this.supermercadoEdit = new Supermercado(0,"","", "");
+  this.supermercadoEdit = new Supermercado;
   this.modalRef = this.modalService.open(this.modalSupermercadoDetalhe);
 }
 

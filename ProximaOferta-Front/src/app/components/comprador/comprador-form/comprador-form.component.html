@@ -30,9 +30,19 @@
                     <label mdbLabel class="form-label" for="typeText">Idade</label>
                 </mdb-form-control>
                 <br>
-                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
-                    Salvar
-                </button>
+                <div>
+                    @if (comprador.genero == null) {
+                        <button (click)="findGenero()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                            Buscar Genero
+                        </button>
+                    }@else {
+                        <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                            Salvar
+                        </button>
+                    }
+                    
+
+                </div>
                 
             </div>
         </div>
@@ -41,4 +51,25 @@
 
 
     </div>
-</div>    
+</div>   
+
+
+
+
+<ng-template #modalFindGenero>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modalRef.close()"
+        ></button>
+      </div>
+      <div class="modal-body">
+
+        <app-comprador-list [botoes]="true" (retornoGenero)="retornoGenero($event)"></app-comprador-list>
+
+      </div>
+
+</ng-template>

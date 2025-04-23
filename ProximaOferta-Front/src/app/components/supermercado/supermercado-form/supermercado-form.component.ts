@@ -19,7 +19,7 @@ import { SupermercadoListComponent } from '../supermercado-list/supermercado-lis
 })
 export class SupermercadoFormComponent {
 
-  @Input("supermercado") supermercado: Supermercado = new Supermercado(0, '', '', '');
+  @Input("supermercado") supermercado: Supermercado = new Supermercado;
   @Output("retorno") retorno = new EventEmitter<any>();
   router = inject(ActivatedRoute);
 

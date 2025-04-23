@@ -8,20 +8,25 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import Swal from 'sweetalert2';
 import { find } from 'rxjs';
 import { CompradorListComponent } from '../comprador-list/comprador-list.component';
+import { Sexo } from '../../../models/sexo';
 
 
 @Component({
   selector: 'app-comprador-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule],
+  imports: [MdbFormsModule, FormsModule, CompradorListComponent],
   templateUrl: './comprador-form.component.html',
   styleUrl: './comprador-form.component.scss'
 })
 export class CompradorFormComponent {
 
-  @Input("comprador") comprador: Comprador = new Comprador(0, '', '', '', 0);
+  @Input("comprador") comprador: Comprador = new Comprador();
   @Output("retorno") retorno = new EventEmitter<any>();
   router = inject(ActivatedRoute);
+
+  modalService = inject(MdbModalService) // para conseguri abrir a modal
+  @ViewChild ("modalFindGenero") modalFindGenero!: TemplateRef<any>;
+  modalRef!: MdbModalRef<any>;
 
 
    compradorService = inject(CompradorService);
@@ -69,6 +74,15 @@ export class CompradorFormComponent {
         }
         
         this.retorno.emit(this.comprador);
+      }
+
+      findGenero(){
+        this.modalRef = this.modalService.open(this.modalFindGenero);
+      }
+
+      retornoGenero(genero:Sexo){
+              this.comprador.genero = genero;
+              this.modalRef.close();
       }
      
 }
