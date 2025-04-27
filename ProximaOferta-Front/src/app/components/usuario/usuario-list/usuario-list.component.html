@@ -16,6 +16,7 @@
                           <tr>
                             <th >ID</th>
                             <th >Usuario</th>
+                            <th >Supemercado</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -23,11 +24,12 @@
                             <tr>
                                 <th>{{usuario.id}}</th>
                                 <td>{{usuario.usuario}}</td>
+                                <td>{{usuario.supermercado.nome}}</td>
                                 <th class="alinharDireita">
-                                    <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" >
+                                    <button   type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" >
                                         Editar
                                     </button>
-                                    <button  type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
+                                    <button  (click)="delete(usuario)" type="button" class="btn btn-outline-danger btn-rounded" mdbRipple rippleColor="dark">
                                         Deletar
                                     </button>
                                 </th>

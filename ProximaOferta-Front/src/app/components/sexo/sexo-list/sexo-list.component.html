@@ -13,6 +13,7 @@
                     <table border ="1" class="table">
                         <thead>
                           <tr>
+                            <th >ID</th>
                             <th >Nome</th>
                             
                         
@@ -22,7 +23,7 @@
                             
                             @for (genero of lista; track $index) {
                             <tr>
-                              
+                                <td>{{genero.id}}</td>
                                 <td>{{genero.genero}}</td>
                                 <th class="alinharDireita">
                                     <div>

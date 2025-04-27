@@ -9,12 +9,13 @@ import Swal from 'sweetalert2';
 import { find } from 'rxjs';
 import { CompradorListComponent } from '../comprador-list/comprador-list.component';
 import { Sexo } from '../../../models/sexo';
+import { SexoListComponent } from "../../sexo/sexo-list/sexo-list.component";
 
 
 @Component({
   selector: 'app-comprador-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule, CompradorListComponent],
+  imports: [MdbFormsModule, FormsModule, SexoListComponent],
   templateUrl: './comprador-form.component.html',
   styleUrl: './comprador-form.component.scss'
 })
@@ -24,7 +25,8 @@ export class CompradorFormComponent {
   @Output("retorno") retorno = new EventEmitter<any>();
   router = inject(ActivatedRoute);
 
-  modalService = inject(MdbModalService) // para conseguri abrir a modal
+  // para conseguri abrir a modal
+  modalService = inject(MdbModalService) 
   @ViewChild ("modalFindGenero") modalFindGenero!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 

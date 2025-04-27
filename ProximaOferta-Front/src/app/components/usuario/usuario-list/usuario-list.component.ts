@@ -38,6 +38,24 @@ export class UsuarioListComponent {
     });
   }
 
+  delete(usuario: Usuario){
+      Swal.fire({
+          title: 'Tem certeza que deseja deletar este registro?',
+            icon: 'warning',
+            showConfirmButton: true,
+            confirmButtonText: 'Ok'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let indice = this.lista.findIndex(x => {return x.id == usuario.id});
+        this.lista.splice(indice, 1)};
+        Swal.fire({
+          title: 'Deletado com sucesso!',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+      })
+    });
+    }
+
   open(){
     this.modalRef = this.modalService.open(this.modalUsuarioNew);
   }
