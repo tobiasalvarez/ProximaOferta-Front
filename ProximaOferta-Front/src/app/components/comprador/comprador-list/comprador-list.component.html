@@ -38,7 +38,15 @@
                                             </button>
                                         }
                                         @else {
-                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple (click)="edit(comprador)">Editar</button>
+                                            <button 
+                                            routerLinkActive="router-link-active"  
+                                            type="button" 
+                                            class="btn btn-outline-success btn-rounded" 
+                                            mdbRipple 
+                                            [disabled]="!compradorSelecionado" 
+                                            (click)="edit(comprador)">
+                                            Editar
+                                        </button>
                                             
                                             
                                             

@@ -8,32 +8,32 @@
         <div class="card">
             <div class="card-body">
                 <h2>Cadastrar Comprador</h2>
-                        
-               
+                <br>
+               <form #form="ngForm">
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.nome" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.nome" name="nome" required/>
                     <label mdbLabel class="form-label" for="typeText">Nome</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.rua" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.rua" name="rua" required/>
                     <label mdbLabel class="form-label" for="typeText">Rua</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.bairro" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.bairro" name="bairro" required />
                     <label mdbLabel class="form-label" for="typeText">Bairro</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.idade" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="comprador.idade" name="idade" required/>
                     <label mdbLabel class="form-label" for="typeText">Idade</label>
                 </mdb-form-control>
                 <br>
-                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" [disabled]="form.invalid">  
                     Salvar
                 </button>
-                
+            </form>
             </div>
         </div>
 

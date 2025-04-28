@@ -10,15 +10,16 @@
                 <h2>Cadastrar Genero</h2>
               
                 <br>
+                <form #form="ngForm">
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="sexo.genero" />
-                    <label mdbLabel class="form-label" for="typeText">Nome</label>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="sexo.genero" name="genero" required />
+                    <label mdbLabel class="form-label" for="typeText">Identificação</label>
                 </mdb-form-control>
                 <br>
-                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" [disabled]="form.invalid">
                     Salvar
                 </button>
-                
+            </form>
             </div>
         </div>
 

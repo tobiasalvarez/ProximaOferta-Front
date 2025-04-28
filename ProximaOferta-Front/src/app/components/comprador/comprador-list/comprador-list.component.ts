@@ -15,6 +15,7 @@ import { CompradorFormComponent } from "../comprador-form/comprador-form.compone
 })
 export class CompradorListComponent {
   lista: Comprador[]= [];
+  compradorSelecionado: Comprador | null = null; // Variável para rastrear o comprador selecionado
   compradorService = inject(CompradorService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoComprador") retornoComprador = new EventEmitter<any>();
@@ -62,9 +63,11 @@ export class CompradorListComponent {
   }
 
 
-  select(comprador:Comprador){
+  select(comprador: Comprador) {
+    this.compradorSelecionado = comprador; // Define o comprador selecionado
     this.retornoComprador.emit(comprador);
   }
+
 new(){
   this.compradorEdit = new Comprador(0,"","", "", 0);
   this.modalRef = this.modalService.open(this.modalCompradorDetalhe);
