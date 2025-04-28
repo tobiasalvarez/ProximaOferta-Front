@@ -7,6 +7,10 @@
                 <div class="card-body">
                     <h2>Listagem de Supermercados</h2>
                     <div class="alinharDireita">
+                        <div>
+                            <input (keyup.enter)="findByEmailContainingIgnoreCase(emailBusqueda)" type="text" [(ngModel)]="emailBusqueda" placeholder="Buscar por email" />
+                            <button (click)="findByEmailContainingIgnoreCase(emailBusqueda)">Buscar</button>
+                          </div>
                         <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
                     </div>
                     <br>

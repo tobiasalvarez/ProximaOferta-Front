@@ -21,14 +21,13 @@ import { Supermercado } from '../../../models/supermercado';
 })
 export class ProdutoFormComponent {
 
-  @Input("produto") produto: Produto = new Produto(0, '', new Date, 0);
+  @Input("produto") produto: Produto = new Produto();
   @Output("retorno") retorno = new EventEmitter<any>();
   router = inject(ActivatedRoute);
 
   modalService = inject(MdbModalService) // para conseguri abrir a modal
   @ViewChild ("modalFindSupermercado") modalFindSupermercado!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
-
 
    produtoService = inject(ProdutoService);
   roteador = inject(Router);
@@ -47,35 +46,35 @@ export class ProdutoFormComponent {
   }
 
   save(){
-        if(this.produto.id > 0){
-          // UPDATE
-          this.produtoService.update(this.produto, this.produto.id).subscribe({
-            next: (mensagem) => {
-              Swal.fire(mensagem, '', 'success');
-              this.roteador.navigate(['admin/produto']);
-              this.retorno.emit("OK");
-            },
-            error: (erro) => {
-              Swal.fire(erro.error, '', 'error');
-            }
-          });
-        }else{
-          // SAVE
-          this.produtoService.save(this.produto).subscribe({
-            next: (mensagem) => {
-              Swal.fire(mensagem, '', 'success');
-              this.roteador.navigate(['admin/produto']);
-              this.retorno.emit("OK");
-            },
-            error: (erro) => {
-              Swal.fire(erro.error, '', 'error');
-            }
-          });
-    
+          if(this.produto.id > 0){
+            // UPDATE
+            this.produtoService.update(this.produto, this.produto.id).subscribe({
+              next: (mensagem) => {
+                Swal.fire(mensagem, '', 'success');
+                this.roteador.navigate(['admin/produto']);
+                this.retorno.emit("OK");
+              },
+              error: (erro) => {
+                Swal.fire(erro.error, '', 'error');
+              }
+            });
+          }else{
+            // SAVE
+            this.produtoService.save(this.produto).subscribe({
+              next: (mensagem) => {
+                Swal.fire(mensagem, '', 'success');
+                this.roteador.navigate(['admin/produto']);
+                this.retorno.emit("OK");
+              },
+              error: (erro) => {
+                Swal.fire(erro.error, '', 'error');
+              }
+            });
+      
+          }
+          
+          this.retorno.emit(this.produto);
         }
-        
-        this.retorno.emit(this.produto);
-      }
 
       findSupermercado(){
         this.modalRef = this.modalService.open(this.modalFindSupermercado, {modalClass: 'modal-lg'}); 

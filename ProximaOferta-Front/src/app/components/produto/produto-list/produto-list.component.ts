@@ -18,7 +18,7 @@ export class ProdutoListComponent {
   produtoService = inject(ProdutoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoProduto") retornoProduto = new EventEmitter<any>();
-  produtoEdit: Produto = new Produto(0,"",new Date, 0, );
+  produtoEdit: Produto = new Produto();
 
 //ELEMENTOS DA MODAL
   modalService = inject(MdbModalService) // para conseguri abrir a modal
@@ -65,7 +65,7 @@ export class ProdutoListComponent {
     this.retornoProduto.emit(produto);
   }
 new(){
-  this.produtoEdit = new Produto(0,"",new Date(), 0);
+  this.produtoEdit = new Produto();
   this.modalRef = this.modalService.open(this.modalProdutoDetalhe);
 }
 
@@ -76,17 +76,14 @@ edit(produto: Produto){
 
 retornoDetalhe(produto: Produto){
   if(produto.id > 0){
-    let indice = this.lista.findIndex(x => {return x.id == produto.id});
+    let indice = this.lista.findIndex(x => x.id == produto.id);
     this.lista[indice] = produto;
-  }else{
-    produto.id = 55;
-    this.lista.push(produto)
+  } else {
+    this.lista.push(produto); // agora o produto tem id real
   }
 
-
-
-
-this.modalRef.close();
+  this.modalRef.close();
 }
+
 
 }

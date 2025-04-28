@@ -19,7 +19,7 @@ export class CompradorListComponent {
   compradorService = inject(CompradorService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoComprador") retornoComprador = new EventEmitter<any>();
-  compradorEdit: Comprador = new Comprador(0,"","", "", 0);
+  compradorEdit: Comprador = new Comprador();
 
 //ELEMENTOS DA MODAL
   modalService = inject(MdbModalService) // para conseguri abrir a modal
@@ -69,7 +69,7 @@ export class CompradorListComponent {
   }
 
 new(){
-  this.compradorEdit = new Comprador(0,"","", "", 0);
+  this.compradorEdit = new Comprador();
   this.modalRef = this.modalService.open(this.modalCompradorDetalhe);
 }
 

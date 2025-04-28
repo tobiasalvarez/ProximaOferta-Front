@@ -32,6 +32,10 @@ export class SupermercadoService {
     update(supermercado :Supermercado, id: number): Observable<string>{
       return this.http.put<string>(this.API+'/update/' + id, supermercado, {responseType: 'text' as 'json'});
     }
+
+    findByEmailContainingIgnoreCase(email: string): Observable<Supermercado[]> {
+      return this.http.get<Supermercado[]>(this.API + '/findByEmailContainingIgnoreCase', { params : {email}})
+    }
   
   
 }

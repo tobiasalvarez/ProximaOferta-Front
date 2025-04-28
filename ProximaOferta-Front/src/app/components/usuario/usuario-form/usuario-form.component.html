@@ -22,14 +22,36 @@
                     <label mdbLabel class="form-label" for="typeText">Senha</label>
                 </mdb-form-control>
                 <br>
-                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" [disabled]="form.invalid">
-                    Salvar
-                </button>
-            </form>
-            </div>
-        </div>
 
-    </div>
+                <div>
+                    @if (usuario.supermercado == null) {
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="findSupermercado()">
+                            Seleccionar Supermercado
+                        </button>
+                    }@else {
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="save()" [disabled]="form.invalid">
+                            Salvar
+                        </button>
+                    }
+                </div>
+                
 
-    </div>
-</div>    
+
+
+<ng-template #modalFindSupermercado>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Seleccionar Supermercado</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modalRef.close()"
+        ></button>
+      </div>
+      <div class="modal-body">
+
+        <app-supermercado-list [botoes]="true" (retornoSupermercado)="retornoSupermercado($event)"></app-supermercado-list>
+
+      </div>
+
+</ng-template>

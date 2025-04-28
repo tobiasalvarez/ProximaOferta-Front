@@ -7,12 +7,18 @@
                 <div class="card-body">
                     <h2>Listagem de Generos</h2>
                     <div class="alinharDireita">
+                        
+                        <div>
+                            <input (keyup.enter)="findByGeneroContainingIgnoreCase(sexoBusqueda)" type="text" [(ngModel)]="sexoBusqueda" placeholder="Buscar por nome" />
+                            <button type="button" mdbRipple class="btn btn-outline-success btn-rounded" (click)="findByGeneroContainingIgnoreCase(sexoBusqueda)">Buscar</button>
+                          </div>
                         <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" routerLink="/admin/sexo/new">Novo</button>
                     </div>
                     <br>
                     <table border ="1" class="table">
                         <thead>
                           <tr>
+                            <th >ID</th>
                             <th >Nome</th>
                             
                         
@@ -22,7 +28,7 @@
                             
                             @for (genero of lista; track $index) {
                             <tr>
-                              
+                                <td>{{genero.id}}</td>
                                 <td>{{genero.genero}}</td>
                                 <th class="alinharDireita">
                                     <div>
