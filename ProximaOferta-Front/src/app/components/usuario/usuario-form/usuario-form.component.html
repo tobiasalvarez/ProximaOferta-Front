@@ -22,7 +22,10 @@
                     <label mdbLabel class="form-label" for="typeText">Senha</label>
                 </mdb-form-control>
                 <br>
-
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="usuario.usuario" name="usuario" required/>
+                    <label mdbLabel class="form-label" for="typeText">Nome</label>
+                </mdb-form-control>
                 <div>
                     @if (usuario.supermercado == null) {
                         <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="findSupermercado()">
@@ -35,8 +38,6 @@
                     }
                 </div>
                 
-
-
 
 <ng-template #modalFindSupermercado>
     <div class="modal-header">
