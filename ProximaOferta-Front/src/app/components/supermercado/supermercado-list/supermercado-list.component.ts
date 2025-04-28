@@ -5,16 +5,18 @@ import { SupermercadoService } from '../../../services/supermercado.service';
 import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { SupermercadoFormComponent } from "../supermercado-form/supermercado-form.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-supermercado-list',
   standalone: true,
-  imports: [MdbModalModule, SupermercadoFormComponent],
+  imports: [MdbModalModule, SupermercadoFormComponent, FormsModule],
   templateUrl: './supermercado-list.component.html',
   styleUrl: './supermercado-list.component.scss'
 })
 export class SupermercadoListComponent {
   lista: Supermercado[]= [];
+  emailBusqueda: string = '';
   supermercadoService = inject(SupermercadoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoSupermercado") retornoSupermercado = new EventEmitter<any>();
@@ -84,6 +86,17 @@ retornoDetalhe(supermercado: Supermercado){
   }
 
 this.modalRef.close();
+}
+
+findByEmailContainingIgnoreCase(email: string){
+  this.supermercadoService.findByEmailContainingIgnoreCase(email).subscribe({
+    next: (data) => {
+      this.lista = data;
+    },
+    error: (erro) => {
+      Swal.fire(erro.error, '', 'error');
+    }
+  });
 }
 
 
