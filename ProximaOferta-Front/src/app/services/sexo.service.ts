@@ -32,6 +32,10 @@ export class SexoService {
     return this.http.put<string>(this.API+'/update/' + id, sexo, {responseType: 'text' as 'json'});
   }
 
+  findByGeneroContainingIgnoreCase(genero: string): Observable<Sexo[]>{
+    return this.http.get<Sexo[]>(this.API + '/findByGeneroContainingIgnoreCase', { params : {genero}});
+  }
+
 
 
 }
