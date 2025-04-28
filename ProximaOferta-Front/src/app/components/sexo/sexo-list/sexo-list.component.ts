@@ -3,16 +3,19 @@ import { Sexo } from '../../../models/sexo';
 import { RouterLink } from '@angular/router';
 import { SexoService } from '../../../services/sexo.service';
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
 @Component({
   selector: 'app-sexo-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule, MdbFormsModule],
   templateUrl: './sexo-list.component.html',
   styleUrl: './sexo-list.component.scss'
 })
 export class SexoListComponent {
   lista: Sexo[]= [];
+  sexoBusqueda: string = '';
   sexoService = inject(SexoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoSexo") retornoComprador = new EventEmitter<any>();
@@ -62,4 +65,17 @@ export class SexoListComponent {
   select(sexo: Sexo){
     this.retornoComprador.emit(sexo);
   }
+
+  findByGeneroContainingIgnoreCase(genero: string){
+    this.sexoService.findByGeneroContainingIgnoreCase(genero).subscribe({
+      next: (data) => {
+        this.lista = data;
+      },
+      error: (erro) => {
+        Swal.fire(erro.error, '', 'error');
+      }
+    });
+  }
+
+
 }
