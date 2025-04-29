@@ -32,5 +32,8 @@ export class ProdutoService {
     return this.http.put<string>(this.API+'/update/' + id, produto, {responseType: 'text' as 'json'});
   }
 
+   findByNomContainingIgnoreCase(nome: string): Observable<Produto[]>{
+      return this.http.get<Produto[]>(this.API + '/findByProdutoContainingIgnoreCase', { params : {nome}});
+    }
 
 }
