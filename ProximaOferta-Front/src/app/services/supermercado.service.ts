@@ -36,6 +36,10 @@ export class SupermercadoService {
     findByEmailContainingIgnoreCase(email: string): Observable<Supermercado[]> {
       return this.http.get<Supermercado[]>(this.API + '/findByEmailContainingIgnoreCase', { params : {email}})
     }
+
+    findByUsuarioUsuarioContainingIgnoreCase(usuario: string): Observable<Supermercado[]>{
+      return this.http.get<Supermercado[]>(this.API + '/findByUsuarioUsuarioContainingIgnoreCase', {params :{usuario}});
+    }
   
   
 }

@@ -9,18 +9,19 @@
                     <div class="alinharDireita">
                         <div>
                             <input (keyup.enter)="findByEmailContainingIgnoreCase(emailBusqueda)" type="text" [(ngModel)]="emailBusqueda" placeholder="Buscar por email" />
-                            <button (click)="findByEmailContainingIgnoreCase(emailBusqueda)">Buscar</button>
+                            <button (click)="consultas(emailBusqueda, usuarioBusqueda)">Buscar</button>
                           </div>
                         <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
                     </div>
                     <br>
-                    <table border ="1" class="table">
+                    <table border ="1" class="table table-striped table-bordered table-hover table-sm">
                         <thead>
                           <tr>
                             <th >ID</th>
                             <th >Nome</th>
                             <th >Rua</th>
                             <th >Email</th>
+                            <th >Usuario</th>
                             
                         
                           </tr>
@@ -33,6 +34,7 @@
                                 <td>{{supermercado.nome}}</td>
                                 <td>{{supermercado.rua}}</td>
                                 <td>{{supermercado.email}}</td>
+                                
                                 
                                 <th class="alinharDireita">
                                     <div>

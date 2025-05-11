@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 export class SupermercadoListComponent {
   lista: Supermercado[]= [];
   emailBusqueda: string = '';
+  usuarioBusqueda: string = '';
   supermercadoService = inject(SupermercadoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoSupermercado") retornoSupermercado = new EventEmitter<any>();
@@ -97,6 +98,25 @@ findByEmailContainingIgnoreCase(email: string){
       Swal.fire(erro.error, '', 'error');
     }
   });
+}
+
+findByUsuarioUsuarioContainingIgnoreCase(usuario: string){
+  this.supermercadoService.findByUsuarioUsuarioContainingIgnoreCase(usuario).subscribe({
+    next: (data) => {
+      this.lista = data;
+    },
+    error: (erro) => {
+      Swal.fire(erro.error, '', 'error');
+    }
+  });
+}
+
+consultas(usuario: string, email: string){
+  
+    this.findByUsuarioUsuarioContainingIgnoreCase(usuario);
+  
+    this.findByEmailContainingIgnoreCase(email);
+  
 }
 
 
