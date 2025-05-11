@@ -5,4 +5,5 @@ export class Usuario {
     usuario!: string;
     senha!: string;
     supermercado!: Supermercado;
+    role!: string;
 }
