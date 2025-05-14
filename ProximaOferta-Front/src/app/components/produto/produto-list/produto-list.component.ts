@@ -8,6 +8,7 @@ import { ProdutoFormComponent } from "../produto-form/produto-form.component";
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../../auth/login.service';
 
+
 @Component({
   selector: 'app-produto-list',
   standalone: true,
