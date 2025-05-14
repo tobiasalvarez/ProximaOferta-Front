@@ -9,25 +9,25 @@
             <div class="card-body">
                 <h2>Cadastrar Produto</h2>
                         
-                
+                <form #form="ngForm">
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.nome" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.nome" name="nome" required/>
                     <label mdbLabel class="form-label" for="typeText">Nome</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.validade" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.validade" nome="validade" required />
                     <label mdbLabel class="form-label" for="typeText">Validade</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoOriginal" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoOriginal" nome="precoOrignal" required/>
                     <label mdbLabel class="form-label" for="typeText">Preço Original</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoAtual" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="produto.precoAtual" nome="precoAtual" required/>
                     <label mdbLabel class="form-label" for="typeText">Preço Atual</label>
                 </mdb-form-control>
                 
@@ -45,10 +45,10 @@
                     }
                 </div>
                 <br>
-                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">
+                <button (click)="save()" type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" [disabled]="form.invalid">
                     Salvar
                 </button>
-                
+            </form>
             </div>
         </div>
 

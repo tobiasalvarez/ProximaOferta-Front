@@ -31,6 +31,8 @@ export class CompradorService {
     return this.http.put<string>(this.API+'/update/' + id, comprador, {responseType: 'text' as 'json'});
   }
 
-
+ findByNomeContainingIgnoreCase(nome: string): Observable<Comprador[]>{
+    return this.http.get<Comprador[]>(this.API + '/findByNomeContainingIgnoreCase', { params : {nome}});
+  }
 
 }

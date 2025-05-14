@@ -5,16 +5,19 @@ import { CompradorService } from '../../../services/comprador.service';
 import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { CompradorFormComponent } from "../comprador-form/comprador-form.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-comprador-list',
   standalone: true,
-  imports: [MdbModalModule, CompradorFormComponent],
+  imports: [MdbModalModule, CompradorFormComponent, FormsModule],
   templateUrl: './comprador-list.component.html',
   styleUrl: './comprador-list.component.scss'
 })
 export class CompradorListComponent {
   lista: Comprador[]= [];
+  nomeProcurado: string = '';
+  compradorSelecionado: Comprador | null = null; // Variável para rastrear o comprador selecionado
   compradorService = inject(CompradorService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoComprador") retornoComprador = new EventEmitter<any>();
@@ -62,9 +65,11 @@ export class CompradorListComponent {
   }
 
 
-  select(comprador:Comprador){
+  select(comprador: Comprador) {
+    this.compradorSelecionado = comprador; // Define o comprador selecionado
     this.retornoComprador.emit(comprador);
   }
+
 new(){
   this.compradorEdit = new Comprador();
   this.modalRef = this.modalService.open(this.modalCompradorDetalhe);
@@ -82,7 +87,17 @@ retornoDetalhe(comprador: Comprador){
   }else{
     this.lista.push(comprador)
   }
+}
 
+findByNomeContainingIgnoreCase(nome: string){
+  this.compradorService.findByNomeContainingIgnoreCase(nome).subscribe({
+    next: (data) => {
+      this.lista = data;
+    },
+    error: (erro) => {
+      Swal.fire(erro.error, '', 'error');
+    }
+  });
 
 
 

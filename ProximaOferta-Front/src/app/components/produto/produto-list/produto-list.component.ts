@@ -5,16 +5,18 @@ import { ProdutoService } from '../../../services/produto.service';
 import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ProdutoFormComponent } from "../produto-form/produto-form.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-produto-list',
   standalone: true,
-  imports: [MdbModalModule, ProdutoFormComponent],
+  imports: [MdbModalModule, ProdutoFormComponent, FormsModule],
   templateUrl: './produto-list.component.html',
   styleUrl: './produto-list.component.scss'
 })
 export class ProdutoListComponent {
   lista: Produto[]= [];
+  nomeProcurado: string = '';
   produtoService = inject(ProdutoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoProduto") retornoProduto = new EventEmitter<any>();
@@ -85,5 +87,12 @@ retornoDetalhe(produto: Produto){
   this.modalRef.close();
 }
 
-
-}
+findByNomeContainingIgnoreCase(nome: string){
+  this.produtoService.findByNomeContainingIgnoreCase(nome).subscribe({
+    next: (data) => {
+      this.lista = data;
+    },
+    error: (erro) => {
+      Swal.fire(erro.error, '', 'error');
+    }
+  });}}

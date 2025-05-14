@@ -7,6 +7,8 @@
                 <div class="card-body">
                     <h2>Listagem de Compradores</h2>
                     <div class="alinharDireita">
+                        <input (keyup.enter)="findByNomeContainingIgnoreCase(nomeProcurado)" type="text" [(ngModel)]="nomeProcurado" placeholder="Buscar por nome" />
+                        <button (click)="findByNomeContainingIgnoreCase(nomeProcurado)">Buscar</button>
                         <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
                     </div>
                     <br>
@@ -40,7 +42,15 @@
                                             </button>
                                         }
                                         @else {
-                                            <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple (click)="edit(comprador)">Editar</button>
+                                            <button 
+                                            routerLinkActive="router-link-active"  
+                                            type="button" 
+                                            class="btn btn-outline-success btn-rounded" 
+                                            mdbRipple 
+                                            [disabled]="!compradorSelecionado" 
+                                            (click)="edit(comprador)">
+                                            Editar
+                                        </button>
                                             
                                             
                                             

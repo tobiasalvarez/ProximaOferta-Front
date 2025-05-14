@@ -11,38 +11,33 @@
                         
                 
                 <br>
+                <form #form="ngForm">
                 <mdb-form-control>
-                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="usuario.usuario" />
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="usuario.usuario"  name="usuario" required/>
                     <label mdbLabel class="form-label" for="typeText">Usuario</label>
                 </mdb-form-control>
                 <br>
                 <mdb-form-control>
-                    <input mdbInput type="password" id="typeText" class="form-control" [(ngModel)]="usuario.senha" />
+                    <input mdbInput type="password" id="typeText" class="form-control" [(ngModel)]="usuario.senha" name="senha" required/>
                     <label mdbLabel class="form-label" for="typeText">Senha</label>
                 </mdb-form-control>
                 <br>
+                <mdb-form-control>
+                    <input mdbInput type="text" id="typeText" class="form-control" [(ngModel)]="usuario.usuario" name="usuario" required/>
+                    <label mdbLabel class="form-label" for="typeText">Nome</label>
+                </mdb-form-control>
                 <div>
                     @if (usuario.supermercado == null) {
                         <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="findSupermercado()">
                             Seleccionar Supermercado
                         </button>
                     }@else {
-                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="save()">
+                        <button  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="save()" [disabled]="form.invalid">
                             Salvar
                         </button>
                     }
                 </div>
                 
-            </div>
-        </div>
-
-    </div>
-
-    </div>
-</div>  
-
-
-
 
 <ng-template #modalFindSupermercado>
     <div class="modal-header">
