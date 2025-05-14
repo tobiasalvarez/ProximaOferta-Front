@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Usuario } from '../../../models/usuario';
 import { Router} from '@angular/router';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,31 @@ import { Router} from '@angular/router';
 export class LoginComponent {
   usuario: Usuario = new Usuario();
 
+  loginService = inject(LoginService);
   router = inject(Router);
 
   logar(){
-    if (this.usuario.usuario == "admin" && this.usuario.senha == "admin") {
-      this.router.navigate(['admin/supermercado'])
-    } else {
-      alert('Tente novamente!');
-    }
+    this.loginService.logar(this.usuario).subscribe({
+      next: token => {
+        if(token){
+
+          this.loginService.addToken(token);
+          this.router.navigate(['/admin/supermercado'])
+        }else{
+          alert('Usuario ou senha incorretos!!');
+        }
+      },
+      error: (error) => {
+        console.error('Erro ao fazer login:', error);
+        alert('Erro ao fazer login. Verifique suas credenciais.');
+      }
+    });
   }
+
+
+
+
+
+
+
 }
