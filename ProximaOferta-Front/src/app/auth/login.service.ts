@@ -49,5 +49,12 @@ export class LoginService {
       return false;
   }
 
+  hasPermission(role: string) {
+    let user = this.jwtDecode() as Usuario;
+    if (user.role == role)
+      return true;
+    else
+      return false;
+  }
 
 }

@@ -22,7 +22,9 @@ export class LoginComponent {
     this.loginService.logar(this.usuario).subscribe({
       next: token => {
         if(token){
+
           this.loginService.addToken(token);
+          this.router.navigate(['/admin/supermercado'])
         }else{
           alert('Usuario ou senha incorretos!!');
         }

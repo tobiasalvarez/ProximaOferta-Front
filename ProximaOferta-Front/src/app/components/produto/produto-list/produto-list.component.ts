@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ProdutoFormComponent } from "../produto-form/produto-form.component";
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../../auth/login.service';
+
 
 @Component({
   selector: 'app-produto-list',
@@ -31,6 +33,7 @@ export class ProdutoListComponent {
     this.findAll();
   }
 
+  loginService = inject(LoginService);
 
   findAll(){
     
