@@ -7,11 +7,14 @@
                 <div class="card-body">
                     <h2>Listagem de Supermercados</h2>
                     <div class="alinharDireita">
-                        <div>
+                        <div class="alinharDireita">
                             <input (keyup.enter)="findByEmailContainingIgnoreCase(emailBusqueda)" type="text" [(ngModel)]="emailBusqueda" placeholder="Buscar por email" />
                             <button (click)="consultas(emailBusqueda, usuarioBusqueda)">Buscar</button>
                           </div>
-                        <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
+                        @if (loginService.hasPermission("ADMIN")) {
+                        <div class="alinharDireita">
+                            <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
+                        </div>}
                     </div>
                     <br>
                     <table border ="1" class="table table-striped table-bordered table-hover table-sm">
@@ -37,6 +40,7 @@
                                 
                                 
                                 <th class="alinharDireita">
+                                    @if(loginService.hasPermission("ADMIN")) {
                                     <div>
                                         @if(botoes){
                                             <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="select(supermercado)">
@@ -52,7 +56,9 @@
                                                 Deletar
                                             </button>
                                         }
+                                    
                                     </div>
+                                    }
                                 </th>
                                 
                             </tr>

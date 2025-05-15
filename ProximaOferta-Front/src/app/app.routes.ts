@@ -12,26 +12,24 @@ import { CompradorListComponent } from './components/comprador/comprador-list/co
 import { CompradorFormComponent } from './components/comprador/comprador-form/comprador-form.component';
 import { SexoListComponent } from './components/sexo/sexo-list/sexo-list.component';
 import { SexoFormComponent } from './components/sexo/sexo-form/sexo-form.component';
+import { guardGuard } from './auth.guard';
+
 
 export const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: 'full'},
     {path: "login", component: LoginComponent},
-    {path: "admin", component: PrincipalComponent, children: [
+    {path: "admin", component: PrincipalComponent, canActivate:[guardGuard],children: [
         {path: "supermercado", component: SupermercadoListComponent},
-        {path: "supermercado/new", component: SupermercadoFormComponent},
+        {path: "supermercado/new",component: SupermercadoFormComponent},
         {path: "supermercado/update/:id", component: SupermercadoFormComponent},
 
         {path: "produto", component: ProdutoListComponent},
         {path: "produto/new", component: ProdutoFormComponent},
         {path: "produto/update/:id", component: ProdutoFormComponent},
 
-        {path: "usuario", component: UsuarioListComponent},
+        {path: "usuario", component: UsuarioListComponent, },
         {path: "usuario/new", component: UsuarioFormComponent},
         {path: "usuario/update/:id", component: UsuarioFormComponent},
-
-        {path: 'supermercado', component: SupermercadoListComponent},
-        {path: 'supermercado/new', component: SupermercadoFormComponent},
-        {path: 'supermercado/update/:id', component: SupermercadoFormComponent},
 
         {path: 'comprador', component: CompradorListComponent},
         {path: 'comprador/new', component: CompradorFormComponent},

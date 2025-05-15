@@ -6,12 +6,15 @@
             <div class="card">
                 <div class="card-body">
                     <h2>Listagem de Produtos</h2>
-                    <input (keyup.enter)="findByNomeContainingIgnoreCase(nomeProcurado)" type="text" [(ngModel)]="nomeProcurado" placeholder="Buscar por nome" />
-                        <button (click)="findByNomeContainingIgnoreCase(nomeProcurado)">Buscar</button>
-                        @if(loginService.hasPermission("ADMIN")){
                     <div class="alinharDireita">
-                        <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
-                    </div>}
+                        <input (keyup.enter)="findByNomeContainingIgnoreCase(nomeProcurado)" type="text" [(ngModel)]="nomeProcurado" placeholder="Buscar por nome" />
+                        <button (click)="findByNomeContainingIgnoreCase(nomeProcurado)">Buscar</button>
+                    </div>
+                    @if(loginService.hasPermission("ADMIN")){
+                        <div class="alinharDireita">
+                            <button  type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">Novo</button>
+                        </div>
+                    }
                     <br>
                     <table border ="1" class="table">
                         <thead>
@@ -39,7 +42,8 @@
                                 <td>{{produto.supermercado.nome}}</td>
                             
                                 <th class="alinharDireita">
-                                  @if(loginService.hasPermission("ADMIN")) {  <div>
+                                  @if(loginService.hasPermission("ADMIN")) {  
+                                    <div>
                                         @if(botoes){
                                             <button routerLinkActive="router-link-active"  type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark" (click)="select(produto)">
                                                 Selecionar
