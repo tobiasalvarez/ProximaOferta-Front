@@ -1,1 +1,53 @@
-<p>dashboard works!</p>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Dashboard</h2>
+                    <div class="alinharDireita">
+                        <button (click)="findAll()">Atualizar tabela de Produtos</button>
+                    </div>
+                    <br>
+                    <table border ="1" class="table">
+                        <thead>
+                          <tr>
+                            <th >ID</th>
+                            <th >Nome</th>
+                            <th >Validade</th>
+                            <th >Preco Original</th>
+                            <th >Preco Atual</th>
+                            <th >Supermercado</th>
+                        
+                          </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @for (produto of lista; track $index) {
+                            <tr>
+                                <td>{{produto.id}}</td>
+                                <td>{{produto.nome}}</td>
+                                <td>{{produto.validade}}</td>
+                                <td>{{produto.precoOriginal}}</td>
+                                <td>{{produto.precoAtual}}</td>
+                                <td>{{produto.supermercado.nome}}</td>
+                                <th class="alinharDireita">
+                                    
+                                </th>
+                                
+                            </tr>
+                            }
+                        </tbody>
+                      </table>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+
+   
