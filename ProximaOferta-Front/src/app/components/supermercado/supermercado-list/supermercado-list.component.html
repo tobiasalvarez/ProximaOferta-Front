@@ -24,8 +24,9 @@
                             <th >Nome</th>
                             <th >Rua</th>
                             <th >Email</th>
-                            <th >Usuario</th>
-                            
+                            @if(loginService.hasPermission("ADMIN")) {
+                                <th >Usuario</th>
+                            }
                         
                           </tr>
                         </thead>
@@ -37,6 +38,9 @@
                                 <td>{{supermercado.nome}}</td>
                                 <td>{{supermercado.rua}}</td>
                                 <td>{{supermercado.email}}</td>
+                                @if(loginService.hasPermission("ADMIN")) {
+                                    <td>{{supermercado.usuario}}</td>
+                                }
                                 
                                 
                                 <th class="alinharDireita">

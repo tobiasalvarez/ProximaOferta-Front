@@ -13,6 +13,7 @@ import { CompradorFormComponent } from './components/comprador/comprador-form/co
 import { SexoListComponent } from './components/sexo/sexo-list/sexo-list.component';
 import { SexoFormComponent } from './components/sexo/sexo-form/sexo-form.component';
 import { guardGuard } from './auth.guard';
+import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -37,7 +38,9 @@ export const routes: Routes = [
 
         {path: 'sexo', component: SexoListComponent},
         {path: 'sexo/new', component: SexoFormComponent},
-        {path: 'sexo/update/:id', component: SexoFormComponent}
+        {path: 'sexo/update/:id', component: SexoFormComponent},
+
+        {path: 'dashboard', component: DashboardComponent},
     ]}
 
 
