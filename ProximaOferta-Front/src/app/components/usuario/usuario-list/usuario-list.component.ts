@@ -6,16 +6,20 @@ import { RouterLink } from '@angular/router';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { UsuarioFormComponent } from "../usuario-form/usuario-form.component";
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { Pagina } from '../../../models/pagina';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-usuario-list',
   standalone: true,
-  imports: [RouterLink, UsuarioFormComponent, MdbModalModule],
+  imports: [RouterLink, UsuarioFormComponent, MdbModalModule, NgbPaginationModule],
   templateUrl: './usuario-list.component.html',
   styleUrl: './usuario-list.component.scss'
 })
 export class UsuarioListComponent {
   lista: Usuario[] = [];
+    pagina: Pagina = new Pagina();
+    numPaginaAtual: number = 4;
   usuarioService = inject(UsuarioService);
 
   modalService = inject(MdbModalService);
@@ -26,17 +30,16 @@ export class UsuarioListComponent {
      this.findAll();
     }
   
-  findAll(){
-     
-    this.usuarioService.findAll().subscribe({
-      next: (listaRetornada) => {
-        this.lista = listaRetornada;
-      },
-      error: (erro) => {
-        Swal.fire(erro.error, '', 'error');
-      }
-    });
-  }
+ findAll() { 
+ 
+   this.usuarioService.findAll(this.numPaginaAtual).subscribe({
+      next: (pagina: Pagina) => {
+        this.pagina = pagina;
+        this.lista = pagina.content;
+      }, 
+      error: (erro) => { Swal.fire(erro.error, '', 'error'); } 
+   }); 
+ }
 
   delete(usuario: Usuario){
       Swal.fire({
@@ -63,4 +66,9 @@ export class UsuarioListComponent {
   close(){
     this.modalRef.close();
   }
+
+  trocarPagina(pagina: any){
+  this.numPaginaAtual = pagina;
+  this.findAll();
+}
 }

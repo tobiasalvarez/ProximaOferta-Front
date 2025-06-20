@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { CompradorFormComponent } from "../comprador-form/comprador-form.component";
 import { FormsModule } from '@angular/forms';
+import { Pagina } from '../../../models/pagina';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-comprador-list',
@@ -17,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 export class CompradorListComponent {
   lista: Comprador[]= [];
   nomeProcurado: string = '';
+  pagina: Pagina = new Pagina();
+  numPaginaAtual: number = 1;
   compradorSelecionado: Comprador | null = null; // Variável para rastrear o comprador selecionado
   compradorService = inject(CompradorService);
   @Input("botoes") botoes : boolean = false;  
@@ -32,7 +37,7 @@ export class CompradorListComponent {
     this.findAll();
 
   }
-
+  
 
   findAll(){
     

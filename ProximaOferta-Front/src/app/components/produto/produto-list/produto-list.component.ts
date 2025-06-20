@@ -7,18 +7,22 @@ import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit
 import { ProdutoFormComponent } from "../produto-form/produto-form.component";
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../../auth/login.service';
+import { Pagina } from '../../../models/pagina';  
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-produto-list',
   standalone: true,
-  imports: [MdbModalModule, ProdutoFormComponent, FormsModule],
+  imports: [MdbModalModule, ProdutoFormComponent, FormsModule, NgbPaginationModule, RouterLink],
   templateUrl: './produto-list.component.html',
   styleUrl: './produto-list.component.scss'
 })
 export class ProdutoListComponent {
   lista: Produto[]= [];
   nomeProcurado: string = '';
+    pagina: Pagina = new Pagina();
+    numPaginaAtual: number = 2;
   produtoService = inject(ProdutoService);
   @Input("botoes") botoes : boolean = false;  
   @Output("retornoProduto") retornoProduto = new EventEmitter<any>();
@@ -35,17 +39,16 @@ export class ProdutoListComponent {
 
   loginService = inject(LoginService);
 
-  findAll(){
-    
-    this.produtoService.findAll().subscribe({
-      next: (listaRetornada) => {
-        this.lista = listaRetornada;
-      },
-      error: (erro) => {
-        Swal.fire(erro.error, '', 'error');
-      }
-    });
-  }
+findAll() { 
+
+  this.produtoService.findAll(this.numPaginaAtual).subscribe({
+     next: (pagina: Pagina) => {
+       this.pagina = pagina;
+       this.lista = pagina.content;
+     }, 
+     error: (erro) => { Swal.fire(erro.error, '', 'error'); } 
+  }); 
+}
 
   delete(produto: Produto){
     Swal.fire({
@@ -98,4 +101,14 @@ findByNomeContainingIgnoreCase(nome: string){
     error: (erro) => {
       Swal.fire(erro.error, '', 'error');
     }
-  });}}
+
+  });
+  
+  }
+
+  trocarPagina(pagina: any){
+    this.numPaginaAtual = pagina;
+    this.findAll();
+  }
+
+}
