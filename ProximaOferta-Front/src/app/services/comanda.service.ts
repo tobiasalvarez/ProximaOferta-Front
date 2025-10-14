@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { Comanda } from '../models/comanda';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ComandaService {
 
   http = inject(HttpClient);
-  API = 'http://localhost:8080/api/comanda';
+  API = environment.SERVIDOR+'/api/comanda';
 
   constructor() { }
 
