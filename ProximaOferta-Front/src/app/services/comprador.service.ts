@@ -2,7 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { Comprador } from '../models/comprador';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
 import { environment } from '../../environments/environment';
+=======
+import { Pagina } from '../models/pagina';
+>>>>>>> 5f944c5c311030b67eff4b7b1567c7ea0c21490e
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +16,7 @@ export class CompradorService {
   API = environment.SERVIDOR+'/api/comprador';
 
   
-  findAll():Observable<Comprador[]>{
-    return this.http.get<Comprador[]>(this.API+'/findAll');
-  }
+  findAll(numPaginaAtual: number): Observable<Pagina>{ return this.http.get<Pagina>(this.API+'/findAll/'+numPaginaAtual); }
 
   findById(id: number): Observable<Comprador> {
     return this.http.get<Comprador>(this.API + '/findById/' + id);
