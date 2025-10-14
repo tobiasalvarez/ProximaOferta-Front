@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { Comprador } from '../models/comprador';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class CompradorService {
 
   http = inject(HttpClient);
-  API = 'http://localhost:8080/api/comprador';
+  API = environment.SERVIDOR+'/api/comprador';
 
   
   findAll():Observable<Comprador[]>{
