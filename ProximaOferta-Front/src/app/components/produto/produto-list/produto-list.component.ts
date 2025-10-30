@@ -34,12 +34,12 @@ export class ProdutoListComponent {
   modalRef!: MdbModalRef<any>;
 
   constructor(){
-    this.findAll();
+   /* this.findAll();*/
   }
 
   loginService = inject(LoginService);
 
-findAll() { 
+/*findAll() { 
 
   this.produtoService.findAll(this.numPaginaAtual).subscribe({
      next: (pagina: Pagina) => {
@@ -48,7 +48,7 @@ findAll() {
      }, 
      error: (erro) => { Swal.fire(erro.error, '', 'error'); } 
   }); 
-}
+}*/
 
   delete(produto: Produto){
     Swal.fire({
@@ -106,9 +106,9 @@ findByNomeContainingIgnoreCase(nome: string){
   
   }
 
-  trocarPagina(pagina: any){
+ /* trocarPagina(pagina: any){
     this.numPaginaAtual = pagina;
     this.findAll();
-  }
+  }*/
 
 }
