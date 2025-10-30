@@ -34,12 +34,11 @@ export class CompradorListComponent {
   modalRef!: MdbModalRef<any>;
 
   constructor(){
-    this.findAll();
 
   }
   
 
-  findAll(){
+  /*findAll(){
     
     this.compradorService.findAll().subscribe({
       next: (listaRetornada) => {
@@ -49,7 +48,7 @@ export class CompradorListComponent {
         Swal.fire(erro.error, '', 'error');
       }
     });
-  }
+  }*/
 
   delete(comprador: Comprador){
     Swal.fire({

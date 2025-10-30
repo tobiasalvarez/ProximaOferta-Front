@@ -27,10 +27,10 @@ export class UsuarioListComponent {
   modalRef!: MdbModalRef<any>;
 
   constructor() {
-     this.findAll();
+     /*this.findAll();*/
     }
   
- findAll() { 
+ /*findAll() { 
  
    this.usuarioService.findAll(this.numPaginaAtual).subscribe({
       next: (pagina: Pagina) => {
@@ -39,7 +39,7 @@ export class UsuarioListComponent {
       }, 
       error: (erro) => { Swal.fire(erro.error, '', 'error'); } 
    }); 
- }
+ }*/
 
   delete(usuario: Usuario){
       Swal.fire({
@@ -67,8 +67,8 @@ export class UsuarioListComponent {
     this.modalRef.close();
   }
 
-  trocarPagina(pagina: any){
+  /*trocarPagina(pagina: any){
   this.numPaginaAtual = pagina;
   this.findAll();
-}
+}*/
 }
